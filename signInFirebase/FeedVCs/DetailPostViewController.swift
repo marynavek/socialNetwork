@@ -52,9 +52,7 @@ class DetailPostViewController: UIViewController, UITextViewDelegate, UIImagePic
         buttonStyle(button: updatePostBtn, color: .blue)
         labelStyle(label: userNameLbl, color: .blue)
         buttonStyle(button: deleteBtn, color: .blue)
-        userImg.layer.borderWidth = 3
-        userImg.layer.cornerRadius = userImg.frame.size.width / 2
-        userImg.clipsToBounds = true
+        roundedImg(image: userImg)
 
 
         view.sendSubviewToBack(backgroundView)

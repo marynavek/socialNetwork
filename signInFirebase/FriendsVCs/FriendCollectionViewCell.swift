@@ -42,9 +42,7 @@ class FriendCollectionViewCell: UICollectionViewCell {
         buttonStyle(button: msgFriend, color: .blue)
         buttonStyle(button: deleteFriend, color: .blue)
         frame.size.height = 119
-        userImg.clipsToBounds = true
-        userImg.layer.cornerRadius = userImg.bounds.width / 2
-        
+        roundedImg(image: userImg)
     }
     
     func updateCell(img: UIImage, name: String, id: String){

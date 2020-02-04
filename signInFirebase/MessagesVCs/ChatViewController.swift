@@ -48,8 +48,7 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
         testViewStyle(txtView: msgBodyTxt, color: .blue)
         textFieldStyle(txtField: friendsDD, color: .blue)
         
-        userImg.clipsToBounds = true
-        userImg.layer.cornerRadius = userImg.bounds.width / 2
+        roundedImg(image: userImg)
         buttonStyle(button: sendBtn, color: .blue)
         userImg.image = UIImage(named: "camera")
         friendsDD.didSelect { (name, index, id) in

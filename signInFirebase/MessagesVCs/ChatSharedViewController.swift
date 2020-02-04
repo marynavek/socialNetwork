@@ -38,8 +38,7 @@ class ChatSharedViewController: UIViewController, UICollectionViewDelegate, UICo
         testViewStyle(txtView: msgBodyTxt, color: .blue)
         labelStyle(label: userNameLbl, color: .blue)
         buttonStyle(button: sendMsgBtn, color: .blue)
-        userImage.clipsToBounds = true
-        userImage.layer.cornerRadius = userImage.bounds.width / 2
+        roundedImg(image: userImage)
         
         userImage.image = userImg
         userNameLbl.text = userName

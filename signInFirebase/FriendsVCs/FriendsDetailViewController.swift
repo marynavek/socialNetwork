@@ -29,9 +29,7 @@ class FriendsDetailViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
 
         view.sendSubviewToBack(backgroundImg)
-        friendImgView.layer.borderWidth = 3
-        friendImgView.layer.cornerRadius = friendImgView.frame.size.width / 2
-        friendImgView.clipsToBounds = true
+        roundedImg(image: friendImgView)
         
         labelStyle(label: friendNameLbl, color: .blue)
         buttonStyle(button: deleteFriendBtn, color: .blue)

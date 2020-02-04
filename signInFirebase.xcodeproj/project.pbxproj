@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8602E51823E9C5AA00560D39 /* Utilities:Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8602E51723E9C5AA00560D39 /* Utilities:Defaults.swift */; };
 		8604BB2423E2692E00B6BFAA /* SignBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8604BB2323E2692E00B6BFAA /* SignBaseController.swift */; };
 		8604BB2723E276F200B6BFAA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8604BB2923E276F200B6BFAA /* LaunchScreen.storyboard */; };
 		8604BB2B23E29DEB00B6BFAA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8604BB2A23E29DEB00B6BFAA /* ViewController.swift */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		7D6580EB7A6EEDB9BC52586F /* Pods-signInFirebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-signInFirebase.release.xcconfig"; path = "Target Support Files/Pods-signInFirebase/Pods-signInFirebase.release.xcconfig"; sourceTree = "<group>"; };
+		8602E51723E9C5AA00560D39 /* Utilities:Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Utilities:Defaults.swift"; sourceTree = "<group>"; };
 		8604BB2323E2692E00B6BFAA /* SignBaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignBaseController.swift; sourceTree = "<group>"; };
 		8604BB2823E276F200B6BFAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8604BB2A23E29DEB00B6BFAA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				86D28D0423E486B2006A92EF /* FireBaseManager.swift */,
 				8680036D23DDFDE400414461 /* SceneDelegate.swift */,
 				8680038F23DE154000414461 /* Models.swift */,
+				8602E51723E9C5AA00560D39 /* Utilities:Defaults.swift */,
 				8680037123DDFDE400414461 /* Main.storyboard */,
 				8680037423DDFE1900414461 /* Assets.xcassets */,
 				8680037923DDFE1900414461 /* Info.plist */,
@@ -454,6 +457,7 @@
 				86EBA94F23E79AE500BD86C7 /* ChatSharedCellCollectionViewCell.swift in Sources */,
 				86D28D0723E4E775006A92EF /* UserDetailViewController.swift in Sources */,
 				86EBA94B23E6AF5700BD86C7 /* ChatCollectionViewCell.swift in Sources */,
+				8602E51823E9C5AA00560D39 /* Utilities:Defaults.swift in Sources */,
 				86EEB61C23E097B4007032B7 /* FriendsViewController.swift in Sources */,
 				8680039B23DE4F8800414461 /* UpdateViewController.swift in Sources */,
 				86EEB61A23E096DD007032B7 /* UsersViewController.swift in Sources */,

@@ -17,9 +17,7 @@ class ConversationCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         labelStyle(label: userName, color: .blue)
-        userImg.layer.borderWidth = 3
-        userImg.layer.cornerRadius = userImg.frame.size.width / 2
-        userImg.clipsToBounds = true
+        roundedImg(image: userImg)
         
 
     }

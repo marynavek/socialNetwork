@@ -27,6 +27,7 @@ class UsersViewController: UIViewController, UICollectionViewDelegate, UICollect
         super.viewDidLoad()
         collView.delegate = self
         collView.dataSource = self
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

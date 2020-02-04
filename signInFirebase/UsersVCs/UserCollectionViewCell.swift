@@ -38,8 +38,8 @@ class UserCollectionViewCell: UICollectionViewCell {
         labelStyle(label: sportLbl, color: .blue)
         buttonStyle(button: addFriendBtn, color: .blue)
         frame.size.height = 119
-        userImg.clipsToBounds = true
-        userImg.layer.cornerRadius = userImg.bounds.width / 2
+        roundedImg(image: userImg)
+        
         
         
     }

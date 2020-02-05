@@ -9,10 +9,14 @@
 import UIKit
 import FirebaseAuth
 import GoogleSignIn
+import TWMessageBarManager
+import SVProgressHUD
 
 
 
 class ViewController: UIViewController, GIDSignInDelegate {
+    
+    let signInVM = SignViewModel()
     
     @IBOutlet weak var resetPBtn: UIButton!
     
@@ -72,18 +76,25 @@ class ViewController: UIViewController, GIDSignInDelegate {
     
     //Sign in button that implements sign In function and go to the main application
     @IBAction func signInBtn(_ sender: Any) {
-        if let email = self.txtEmail.text, !email.isEmpty, let password = self.txtPassword.text, !password.isEmpty {
-            FireBaseManager.shared.signIn(email: email, password: password)
-            
-            
-            let ctrl = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
-            ctrl.modalPresentationStyle = .fullScreen
-            self.present(ctrl, animated: true, completion: nil)
-            
-        } else {
-            print("fill out all fields")
+       if signInVM.validateSignIn(email: txtEmail.text, password: txtPassword.text){
+//        SVProgressHUD.show()
+            signInVM.signIn(email: txtEmail.text, password: txtPassword.text) { (error) in
+                if error == nil {
+//                    SVProgressHUD.dismiss()
+                    let ctrl = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
+                    ctrl.modalPresentationStyle = .fullScreen
+                    self.present(ctrl, animated: true, completion: nil)
+//                    TWMessageBarManager().showMessage(withTitle: NSLocalizedString("Success", comment: ""), description: NSLocalizedString("Welcome Back!", comment: ""), type: .success, duration: 5)
+//                } else {
+//                    SVProgressHUD.dismiss()
+//                    TWMessageBarManager().showMessage(withTitle: NSLocalizedString("Error", comment: ""), description: NSLocalizedString("Could not sign in!", comment: ""), type: .error, duration: 5)
+//                }
+            }
+//       } else {
+//        TWMessageBarManager().showMessage(withTitle: NSLocalizedString("Error", comment: ""), description: NSLocalizedString("All fields are required", comment: ""), type: .error, duration: 5)
+//        }
+            }
         }
     }
-    
 }
 

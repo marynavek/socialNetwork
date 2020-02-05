@@ -17,12 +17,10 @@ class DetailPostViewController: UIViewController, UITextViewDelegate, UIImagePic
     @IBOutlet weak var backgroundView: UIImageView!
     let imagePicker = UIImagePickerController()
     
-    let dateNew = Date()
-    let dateFormatter = DateFormatter()
-    var dateId : String = ""
+    
     let timestamp = NSDate().timeIntervalSince1970
 
-    
+    let dateId = generateDate()
     
     @IBOutlet weak var chooseImgBtn: UIButton!
     @IBOutlet weak var backBtn: UIButton!
@@ -69,8 +67,6 @@ class DetailPostViewController: UIViewController, UITextViewDelegate, UIImagePic
         if isCurrentUser == true {
             postBodyTxt.isEditable = true
             setUpImagePicker()
-            dateFormatter.dateFormat = "MMMM-dd-yyyy HH:mm"
-            dateId = dateFormatter.string(from: dateNew)
         } else {
             deleteBtn.isHidden = true
             updatePostBtn.isHidden = true

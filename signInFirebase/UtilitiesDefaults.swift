@@ -11,9 +11,12 @@ import UIKit
 
 func roundedImg(image : UIImageView){
     image.clipsToBounds = true
+    let borderColor = UIColor.blue.cgColor
+    image.layer.borderColor = borderColor
     image.layer.borderWidth = 3
     image.layer.cornerRadius = image.bounds.width / 2
 }
+
 
 func textFieldStyle(txtField: UITextField, color: UIColor){
     let borderColor = color.cgColor
@@ -79,3 +82,11 @@ class defaultPostModel {
     let postId = "1"
 }
 
+func generateDate() ->String {
+    let date = Date()
+    let dateFormatter = DateFormatter()
+    var dateId : String = ""
+    dateFormatter.dateFormat = "MMMM-dd-yyyy HH:mm"
+    dateId = dateFormatter.string(from: date)
+    return dateId
+}

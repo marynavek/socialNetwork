@@ -62,6 +62,13 @@ class FriendsDetailViewController: UIViewController, UITableViewDelegate, UITabl
         return cell
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Posts By \(user?.name ?? defaultUserModel.shared.name)"
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let post = arrPosts[indexPath.row]
         let userM = user

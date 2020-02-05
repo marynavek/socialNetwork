@@ -13,6 +13,7 @@ import FirebaseDatabase
 import FirebaseStorage
 import FirebaseAuth
 
+
 class FireBaseManager {
     static let shared = FireBaseManager()
     private init (){}
@@ -21,17 +22,20 @@ class FireBaseManager {
     let referenceS = Storage.storage().reference()
     
 //sign in
-    func signIn(email: String, password: String){
+    func signIn(email: String, password: String, completionHandler: @escaping (Error?) -> Void){
         Auth.auth().signIn(withEmail: email, password: password) {(user, error) in
             if error != nil {
                 print(error?.localizedDescription ?? "error occured")
+                completionHandler(error)
             } else {
                 if let user = user?.user {
                     print(user.uid)
                 }
+                completionHandler(nil)
             }
         }
     }
+    
     
 //delete user
     func deleteUser(completionHandler: @escaping (Error?) -> Void){

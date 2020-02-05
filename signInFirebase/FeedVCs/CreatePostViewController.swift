@@ -15,11 +15,9 @@ import FirebaseStorage
 class CreatePostViewController: UIViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     let imagePicker = UIImagePickerController()
-    
-    let date = Date()
-    let dateFormatter = DateFormatter()
-    var dateId : String = ""
 
+    let dateId = generateDate()
+    
     @IBOutlet weak var backgroundView: UIImageView!
     @IBOutlet weak var imgBtn: UIButton!
     
@@ -30,9 +28,8 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UIImagePic
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //obtaining the current date
-        dateFormatter.dateFormat = "MMMM-dd-yyyy HH:mm"
-        dateId = dateFormatter.string(from: date)
+        
+        
         view.sendSubviewToBack(backgroundView)
         
         //set up imagePicker

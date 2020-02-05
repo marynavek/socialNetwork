@@ -147,7 +147,7 @@ typedef NS_ENUM(NSInteger, TWMessageBarMessageType) {
  *  @param type         Type dictates color, stroke and icon shown in the message view.
  *  @param callback     Callback block to be executed if a message is tapped.
  */
-- (void)showMessageWithTitle:(nullable NSString *)title description:(nullable NSString *)description type:(TWMessageBarMessageType)type callback:(nullable void (^)(void))callback;
+- (void)showMessageWithTitle:(nullable NSString *)title description:(nullable NSString *)description type:(TWMessageBarMessageType)type callback:(nullable void (^)())callback;
 
 /**
  *  Shows a message with the supplied title, description, type & duration.

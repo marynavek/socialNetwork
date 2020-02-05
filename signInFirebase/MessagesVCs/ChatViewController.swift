@@ -14,13 +14,11 @@ import iOSDropDown
 
 class ChatViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
-    var startedSaveGroup : Bool?
-    var starteChatGroup : Bool?
+    var choseUser : Bool?
+    
     
     let timestamp = NSDate().timeIntervalSince1970
-    let date = Date()
-    let dateFormatter = DateFormatter()
-    var dateId : String = ""
+    let dateId = generateDate()
     
     @IBOutlet weak var backgroundImg: UIImageView!
     
@@ -55,12 +53,12 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
             self.userImg.image = self.optionsImgs[index]
             self.userId = self.idsDict[name] as! String
             self.getAllMessages(userId: self.userId!)
+            self.choseUser = true
         }
-        dateFormatter.dateFormat = "MMMM-dd-yyyy HH:mm"
-        dateId = dateFormatter.string(from: date)
         
+        if choseUser == true {
         timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(getMessages), userInfo: nil, repeats: true)
-        
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -126,8 +124,6 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
 
-    let saveGroup = DispatchGroup()
-    let chatGroup = DispatchGroup()
 
     
     @IBAction func sendMessage(_ sender: Any) {

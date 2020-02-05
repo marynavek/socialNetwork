@@ -11,9 +11,7 @@ import UIKit
 class ChatSharedViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     let timestamp = NSDate().timeIntervalSince1970
-    let date = Date()
-    let dateFormatter = DateFormatter()
-    var dateId : String = ""
+    let dateId = generateDate()
     
     @IBOutlet weak var backgroundImg: UIImageView!
     
@@ -43,8 +41,6 @@ class ChatSharedViewController: UIViewController, UICollectionViewDelegate, UICo
         userImage.image = userImg
         userNameLbl.text = userName
 
-        dateFormatter.dateFormat = "MMMM-dd-yyyy HH:mm"
-        dateId = dateFormatter.string(from: date)
     }
     
     override func viewWillAppear(_ animated: Bool) {

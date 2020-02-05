@@ -39,9 +39,7 @@ class UserCollectionViewCell: UICollectionViewCell {
         buttonStyle(button: addFriendBtn, color: .blue)
         frame.size.height = 119
         roundedImg(image: userImg)
-        
-        
-        
+
     }
     
     func updateCell(img : UIImage, name: String, sport: String, id: String){

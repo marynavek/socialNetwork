@@ -11,6 +11,7 @@ import FirebaseAuth
 import Firebase
 import FirebaseDatabase
 import FirebaseStorage
+import IHProgressHUD
 
 class CreatePostViewController: UIViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -59,11 +60,16 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UIImagePic
     func savePost(){
         let user = Auth.auth().currentUser
         let postM = PostModel(timestamp: timestamp, userId: user?.uid, postBody: postTxt.text, date: dateId, postImage: nil, postId: nil)
+        IHProgressHUD.show()
         FireBaseManager.shared.savePost(post: postM) { (error) in
             if error == nil {
+                IHProgressHUD.showSuccesswithStatus("Succesfully created the post")
                 print("Succesfully created post")
+                IHProgressHUD.dismissWithDelay(2)
                 return
             } else {
+                IHProgressHUD.showError(withStatus: "Could not create the post")
+                IHProgressHUD.dismissWithDelay(2)
                 print(error?.localizedDescription ?? "Could not create a post")
             }
         }
@@ -101,13 +107,18 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UIImagePic
             print("Error, image is not found")
             return
         }
+        IHProgressHUD.show()
         FireBaseManager.shared.savePostImg(date: dateId, image: addedImg) { (error) in
             if error == nil {
                 self.postImgView.image = addedImg
+                IHProgressHUD.showSuccesswithStatus("Succesfully added the image")
+                
                 print("Succesfully saved image")
             } else {
+                IHProgressHUD.showError(withStatus: "Could not add the image")
                 print(error?.localizedDescription ?? "Couldnt save image")
             }
+            IHProgressHUD.dismissWithDelay(2)
         }
         self.imagePicker.dismiss(animated: true, completion: nil)
     }

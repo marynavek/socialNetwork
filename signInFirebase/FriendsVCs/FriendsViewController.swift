@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IHProgressHUD
 
 class FriendsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, FriendDelDelegate {
     
@@ -34,19 +35,26 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     func getAllFriends(){
+        IHProgressHUD.show()
         FireBaseManager.shared.getAllFriends { [weak self] (arrOfFriends) in
             guard let array = try? arrOfFriends else {
+                IHProgressHUD.showError(withStatus: "Could not get friends")
+                IHProgressHUD.dismiss()
                 print("Could not get Friends")
                 self!.arrFriends = []
                 return
             }
             self?.arrFriends = array
             if self?.arrFriends.count == 0 {
+                IHProgressHUD.showInfowithStatus("You don't have any friends yet")
+                IHProgressHUD.dismissWithDelay(2)
                 print("No Friends were found")
             } else {
-                    self?.colView.reloadData()
+                self?.colView.reloadData()
+                IHProgressHUD.dismiss()
             }
         }
+        IHProgressHUD.dismiss()
     }
     
 
@@ -100,7 +108,6 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
                 vc.userName = userName!
                 vc.userImg = userImgName
                 vc.getAllMessages(userId: userId!)
-        //        vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
 }

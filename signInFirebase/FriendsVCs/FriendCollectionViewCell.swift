@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import  FirebaseDatabase
+import IHProgressHUD
 
 protocol FriendDelDelegate {
     func deleteFriend()
@@ -61,16 +62,19 @@ class FriendCollectionViewCell: UICollectionViewCell {
     
     
     @IBAction func deleteFriend(_ sender: Any) {
+        IHProgressHUD.show()
         guard  let id = userId else {
             return
         }
         FireBaseManager.shared.deleteFriend(friendId: id) { (error) in
             if error != nil {
+                IHProgressHUD.showError(withStatus: "Could not delete a friend")
                 print(error?.localizedDescription ?? "Could not delete a friend")
             } else {
-                
+                IHProgressHUD.showSuccesswithStatus("Successfully removed a friend")
                 print("Succesfully removed a friend")
             }
+            IHProgressHUD.dismiss()
             self.delegate?.deleteFriend()
         }
     }

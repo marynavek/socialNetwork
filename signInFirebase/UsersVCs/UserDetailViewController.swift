@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import  IHProgressHUD
 
 class UserDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -34,18 +35,19 @@ class UserDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         labelStyle(label: userName, color: .blue)
         buttonStyle(button: msgBtn, color: .blue)
         buttonStyle(button: backBtn, color: .blue)
-        
-        let defaultImage = defaultImg(gender: (user?.gender ?? defaultUserModel.shared.gender))
+                let defaultImage = defaultImg(gender: (user?.gender ?? defaultUserModel.shared.gender))
         let imgDef = user?.userImage ?? defaultImage
         userImg.image = imgDef ?? defaultUserModel.shared.userImage
         userName.text = fullName ?? (defaultUserModel.shared.name + defaultUserModel.shared.lastName)
         postsTbl.reloadData()
+        
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        IHProgressHUD.show()
         postsTbl.reloadData()
+        IHProgressHUD.dismiss()
     }
     
     
@@ -110,8 +112,6 @@ class UserDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func goBackToUsers(_ sender: Any) {
-        let ctrl = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
-        ctrl.modalPresentationStyle = .fullScreen
-        self.present(ctrl, animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }

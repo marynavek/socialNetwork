@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import IHProgressHUD
 
 protocol FriendsDelegate {
     func addFriend()
@@ -55,11 +56,15 @@ class UserCollectionViewCell: UICollectionViewCell {
     
     @IBAction func addFriend(_ sender: Any) {
         guard let id = userId else { return }
+        IHProgressHUD.show()
         FireBaseManager.shared.addFriend(friendId: id) { (error) in
             if error != nil {
+                IHProgressHUD.showError(withStatus: "Could not add a friend")
+                IHProgressHUD.dismissWithDelay(2)
                 print(error?.localizedDescription ?? "Could not add a friend")
             } else {
-                
+                IHProgressHUD.showSuccesswithStatus("Succesfully added a friend")
+                IHProgressHUD.dismissWithDelay(2)
                 print("Succesfully added a friend")
             }
             self.delegate?.addFriend()

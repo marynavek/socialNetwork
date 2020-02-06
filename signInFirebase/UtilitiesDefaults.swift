@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import NotificationBannerSwift
 
 func roundedImg(image : UIImageView){
     image.clipsToBounds = true
@@ -56,6 +57,10 @@ func defaultImg(gender: String) -> UIImage {
     return defaultImg
 }
 
+func showAlert(title: String, details: String, style: BannerStyle, vc: UIViewController){
+    let banner = FloatingNotificationBanner(title: title, subtitle: details, style: style)
+    banner.show(on: vc)
+}
 
 class defaultUserModel {
     static let shared = defaultUserModel()
@@ -89,4 +94,18 @@ func generateDate() ->String {
     dateFormatter.dateFormat = "MMMM-dd-yyyy HH:mm"
     dateId = dateFormatter.string(from: date)
     return dateId
+}
+
+
+extension String {
+   var isValidEmail: Bool {
+      let regularExpressionForEmail = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+      let testEmail = NSPredicate(format:"SELF MATCHES %@", regularExpressionForEmail)
+      return testEmail.evaluate(with: self)
+   }
+   var isValidPhone: Bool {
+      let regularExpressionForPhone = "^\\d{3}-\\d{3}-\\d{4}$"
+      let testPhone = NSPredicate(format:"SELF MATCHES %@", regularExpressionForPhone)
+      return testPhone.evaluate(with: self)
+   }
 }

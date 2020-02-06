@@ -8,12 +8,19 @@
 
 import UIKit
 
-class FeedCollectionViewCell: UICollectionViewCell {
+class FeedCollectionViewCell: UICollectionViewCell, UITextViewDelegate {
     
+    
+    //constraints
+    
+    @IBOutlet weak var lblToImg: NSLayoutConstraint!
+    
+    @IBOutlet weak var lblTolbl: NSLayoutConstraint!
     
     @IBOutlet weak var userNameLbl: UILabel!
     
-    @IBOutlet weak var postLBl: UILabel!
+    
+    @IBOutlet weak var postTxt : UITextView!
     
     @IBOutlet weak var userImg: UIImageView!
     
@@ -26,37 +33,47 @@ class FeedCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+//        lblToImg.constant = 0
+//        lblTolbl.constant = 0
+        testViewStyle(txtView: postTxt, color: .blue)
         labelStyle(label: userNameLbl, color: .blue)
-        labelStyle(label: postLBl, color: .blue)
         labelStyle(label: dateLbl, color: .blue)
         
         roundedImg(image: userImg)
         postImg.clipsToBounds = true
+        
+        let fixedWidth = postTxt.frame.size.width
+               let newSize = postTxt.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+               postTxt.frame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
     }
     
     func updateCellWOImg(userImg: UIImage, userName: String, postBody: String, date: String){
         self.userImg.image = userImg
-        self.postImg.isHidden = true
-        self.postLBl.isHidden = false
         self.userNameLbl.text = userName
-        self.postLBl.text = postBody
+        self.postTxt.text = postBody
         self.dateLbl.text = date
+        
+        self.postImg.isHidden = true
+        self.postTxt.isHidden = false
+        
     }
     func updateCellWOText(userImg: UIImage, postImg: UIImage, userName: String, date: String){
         self.userImg.image = userImg
         self.postImg.image = postImg
         self.userNameLbl.text = userName
-        self.postLBl.isHidden = true
-        self.postImg.isHidden = false
         self.dateLbl.text = date
+        
+        self.postImg.isHidden = true
+        self.postTxt.isHidden = false
     }
     func updateCell(userImg: UIImage, postImg: UIImage, userName: String, postBody: String, date: String){
-        self.postImg.isHidden = false
-        self.postLBl.isHidden = false
         self.userImg.image = userImg
         self.postImg.image = postImg
         self.userNameLbl.text = userName
-        self.postLBl.text = postBody
+        self.postTxt.text = postBody
         self.dateLbl.text = date
+        
+        self.postImg.isHidden = false
+        self.postTxt.isHidden = false
     }
 }

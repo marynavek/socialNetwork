@@ -75,6 +75,7 @@ class FireBaseManager {
                             Auth.auth().signIn(withEmail: userDict["email"] as! String, password: userDict["password"] as! String, completion: { (newUser, error) in
                                 if error == nil {
                                     print("succesfully signed in")
+                                    completionHandler(nil)
                                 } else {
                                     completionHandler(error)
                                 }

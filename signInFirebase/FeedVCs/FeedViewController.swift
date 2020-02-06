@@ -9,11 +9,19 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+import SVProgressHUD
+import TWMessageBarManager
+import IHProgressHUD
+import ViewAnimator
+
+
 
 class FeedViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    var feedVM = FeedViewModel()
+    
     @IBOutlet weak var noPostlbl: UILabel!
-    var arrPosts = [[String : Any]]()
+    
     
     @IBOutlet weak var backgroundView: UIImageView!
     @IBOutlet weak var collView: UICollectionView!
@@ -31,94 +39,59 @@ class FeedViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
 
     @objc func getPosts(){
-        arrPosts = [[String:Any]]()
-        FireBaseManager.shared.getAllPosts{ (posts) in
-                    if posts != nil {
-                        self.arrPosts = posts!.sorted(by: { ($0["timestamp"] as! Double) > ($1["timestamp"] as! Double) })
-                        self.collView.reloadData()
-                    } else {
-                        print("no posts yet")
-                    }
-                }
+        IHProgressHUD.show()
+        feedVM.getPosts { (_) in
+            DispatchQueue.main.async {
+                self.collView.reloadData()
+                IHProgressHUD.dismiss()
+            }
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//        let fromAnimation = AnimationType.from(direction: .right, offset: 30.0)
+        let zoomAnimation = AnimationType.zoom(scale: 0.2)
+        let rotateAnimation = AnimationType.rotate(angle: CGFloat.pi/6)
+        UIView.animate(views: [cell],
+                       animations: [zoomAnimation, rotateAnimation],
+                       duration: 0.5)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrPosts.count
+        return feedVM.numberOfRows()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FeedCollectionViewCell
         
-        guard indexPath.row < arrPosts.count else { return FeedCollectionViewCell()}
-        let post = arrPosts[indexPath.row]
-        let userM = post["user"] as! UserModel?
-        let postM = post["post"] as! PostModel?
-        var postImg : UIImage?
-        var postBody : String?
-        var date : String?
-        var userImg : UIImage?
-        var userName : String?
-        if userM != nil {
-            userImg = userM!.userImage ?? defaultImg(gender: (userM?.gender)!)
-            userName = "\(userM!.name ?? "") \(userM!.lastName ?? "")"
-        }
-        if postM != nil {
-            date = postM?.date ?? ""
-            if let img = postM?.postImage{
-                postImg = img
-            } else {
-                postImg = nil
-            }
-            if let body = postM?.postBody {
-                postBody = body
-            } else {
-                postBody = nil
-            }
-        }
+        guard indexPath.row < feedVM.numberOfRows() else { return FeedCollectionViewCell()}
         
-        if !(postImg == nil) && !(postBody == nil){
-            cell.updateCell(userImg: userImg ?? defaultUserModel.shared.userImage, postImg: postImg!, userName: userName ?? "John", postBody: postBody!, date: date ?? "")
-        }
-        if !(postImg == nil) && postBody == nil {
-            cell.updateCellWOText(userImg: userImg ?? defaultUserModel.shared.userImage, postImg: postImg!, userName: userName ?? defaultUserModel.shared.name, date: date ?? "")
-        }
-        if postImg == nil && !(postBody == nil) {
-            cell.updateCellWOImg(userImg: userImg ?? defaultUserModel.shared.userImage, userName: userName ?? defaultUserModel.shared.name, postBody: postBody!, date: date ?? "")
+        feedVM.setInfoForCell(index: indexPath.row) { (both, image, body) in
+            if both && !image && !body {
+                cell.updateCell(userImg: self.feedVM.userImg!, postImg: self.feedVM.postImg!, userName: self.feedVM.userName!, postBody: self.feedVM.postBody!, date: self.feedVM.date!)
+            }
+            if !both && image && !body {
+                cell.updateCellWOText(userImg: self.feedVM.userImg!, postImg: self.feedVM.postImg!, userName: self.feedVM.userName!, date: self.feedVM.date!)
+            }
+            if !both && !image && body {
+                cell.updateCellWOImg(userImg: self.feedVM.userImg!, userName: self.feedVM.userName!, postBody: self.feedVM.postBody!, date: self.feedVM.date!)
+            }
         }
         return cell
     }
+
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let post = arrPosts[indexPath.row]
-        let userM = post["user"] as! UserModel?
-        let postM = post["post"] as! PostModel?
-        let postId = post["postId"] as! String?
-        var postImg : UIImage?
-        var postBody : String?
-        var date : String?
-        var userImg : UIImage?
-        var userName : String?
-        var userId : String?
         
-        if userM != nil {
-            let defaultImage = defaultImg(gender: (userM?.gender!)!)
-            userId = userM?.userId!
-            userImg = userM!.userImage ?? UIImage(named: "camera")
-            userName = "\(userM!.name ?? "") \(userM!.lastName ?? "")"
-        }
-        if postM != nil {
-            postImg = postM?.postImage ?? UIImage()
-            postBody = postM?.postBody ?? ""
-            date = postM?.date ?? ""
-        }
+        feedVM.getPostAndUserInfoToPass(index: indexPath.row)
+        
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "DetailPostViewController") as! DetailPostViewController
-        vc.imgPost = postImg
-        vc.imgUser = userImg
-        vc.userName = userName
-        vc.date = date
-        vc.postBody = postBody
-        vc.userId = userId
-        vc.postId = postId!
+        vc.imgPost = feedVM.postImg
+        vc.imgUser = feedVM.userImg
+        vc.userName = feedVM.userName
+        vc.date = feedVM.date
+        vc.postBody = feedVM.postBody
+        vc.userId = feedVM.userId
+        vc.postId = feedVM.postId
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
         

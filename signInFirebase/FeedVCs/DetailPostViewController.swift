@@ -11,6 +11,7 @@ import FirebaseAuth
 import Firebase
 import FirebaseDatabase
 import FirebaseStorage
+import IHProgressHUD
 
 class DetailPostViewController: UIViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -59,9 +60,7 @@ class DetailPostViewController: UIViewController, UITextViewDelegate, UIImagePic
         let newSize = postBodyTxt.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
         postBodyTxt.frame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
         
-        
-        
-        
+
         checkIfCureent(userId: userId!)
         
         if isCurrentUser == true {
@@ -72,15 +71,17 @@ class DetailPostViewController: UIViewController, UITextViewDelegate, UIImagePic
             updatePostBtn.isHidden = true
             chooseImgBtn.isEnabled = false
         }
-
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        IHProgressHUD.show()
         postImgView.image = imgPost
         userImg.image = imgUser
         userNameLbl.text = userName
         dateLbl.text = date
         postBodyTxt.text = postBody
+        IHProgressHUD.dismiss()
     }
     
     @IBAction func goBackPosts(_ sender: Any) {
@@ -90,10 +91,23 @@ class DetailPostViewController: UIViewController, UITextViewDelegate, UIImagePic
     @IBAction func updatePost(_ sender: Any) {
         let uid = Auth.auth().currentUser?.uid
         let postM = PostModel(timestamp: timestamp, userId: uid, postBody: postBodyTxt.text, date: dateId, postImage: nil, postId: postId)
+        IHProgressHUD.show()
         FireBaseManager.shared.updatePost(post: postM) { (error) in
             if error == nil {
+                IHProgressHUD.showSuccesswithStatus("Succesfully updated your post")
+                
+                FireBaseManager.shared.savePostImg(date: self.dateId, image: self.postImgView.image!) { (error) in
+                if error == nil {
+                    IHProgressHUD.dismissWithDelay(2)
+                    print("Succesfully uploaded and updated image")
+                } else {
+                    print(error?.localizedDescription ?? "Couldnt save image")
+                    }
+                }
                 print("Succesfuly updated post")
             } else {
+                IHProgressHUD.showError(withStatus: "Could not update the post")
+                IHProgressHUD.dismissWithDelay(2)
                 print("Could not update the post")
             }
         }
@@ -102,10 +116,15 @@ class DetailPostViewController: UIViewController, UITextViewDelegate, UIImagePic
         
     }
     @IBAction func deletePost(_ sender: Any) {
+        IHProgressHUD.show()
         FireBaseManager.shared.deletePost(postId: postId!) { (error) in
             if error == nil{
+                IHProgressHUD.showSuccesswithStatus("Succesfully deleted the post")
+                IHProgressHUD.dismissWithDelay(2)
                 print("Succesfully deleted post")
             } else {
+                IHProgressHUD.showError(withStatus: "Could not delete the post")
+                IHProgressHUD.dismissWithDelay(2)
                 print(error?.localizedDescription ?? "Could not delete post")
             }
         }
@@ -153,9 +172,7 @@ class DetailPostViewController: UIViewController, UITextViewDelegate, UIImagePic
     }
     
     @IBAction func goToFeed(_ sender: Any) {
-        let ctrl = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
-        ctrl.modalPresentationStyle = .fullScreen
-        self.present(ctrl, animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

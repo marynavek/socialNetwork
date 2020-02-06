@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+import IHProgressHUD
 
 class UsersViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, FriendsDelegate {
     
@@ -39,16 +40,22 @@ class UsersViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     func getAllUsers(){
         arrOfFriends = []
+        IHProgressHUD.show()
         FireBaseManager.shared.getAllUsers { [weak self] (arrOfUsers) in
             guard let users = try? arrOfUsers else {
+                IHProgressHUD.showError(withStatus: "Could not get users")
+                IHProgressHUD.dismissWithDelay(2)
                 print("Could not get users")
                 return
             }
             self?.arrUsers = users
             print(self!.arrUsers.count)
             if self?.arrUsers.count == 0 {
+                IHProgressHUD.showInfowithStatus("There is no users yet")
+                IHProgressHUD.dismissWithDelay(2)
                 print("No users were found")
             } else {
+                IHProgressHUD.dismiss()
                 self?.collView.reloadData()
             }
         }

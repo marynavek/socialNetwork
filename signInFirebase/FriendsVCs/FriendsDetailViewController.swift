@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IHProgressHUD
 
 class FriendsDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -35,12 +36,13 @@ class FriendsDetailViewController: UIViewController, UITableViewDelegate, UITabl
         buttonStyle(button: deleteFriendBtn, color: .blue)
         buttonStyle(button: sendMsgBtn, color: .blue)
         buttonStyle(button: backBtn, color: .blue)
-        
+        IHProgressHUD.show()
         let defaultImage = defaultImg(gender: (user?.gender ?? defaultUserModel.shared.gender))
         let imgDef = user?.userImage ?? defaultImage
         friendImgView.image = imgDef ?? defaultUserModel.shared.userImage
         friendNameLbl.text = fullName ?? (defaultUserModel.shared.name + defaultUserModel.shared.lastName)
                postsTbl.reloadData()
+        IHProgressHUD.dismiss()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -122,9 +124,7 @@ class FriendsDetailViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     @IBAction func goBackToFriends(_ sender: Any) {
-        let ctrl = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
-        ctrl.modalPresentationStyle = .fullScreen
-        self.present(ctrl, animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

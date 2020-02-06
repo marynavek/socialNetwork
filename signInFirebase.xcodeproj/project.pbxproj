@@ -25,8 +25,10 @@
 		8680039423DE18B300414461 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680039323DE18B300414461 /* FeedViewController.swift */; };
 		8680039923DE439400414461 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8680039823DE439400414461 /* NetworkExtension.framework */; };
 		8680039B23DE4F8800414461 /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680039A23DE4F8700414461 /* UpdateViewController.swift */; };
+		86C1006923EB598B0098B737 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1006823EB598B0098B737 /* FeedViewModel.swift */; };
 		86D28D0523E486B2006A92EF /* FireBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D28D0423E486B2006A92EF /* FireBaseManager.swift */; };
 		86D28D0723E4E775006A92EF /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D28D0623E4E775006A92EF /* UserDetailViewController.swift */; };
+		86E431E223EC54B0008612F6 /* signInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E431E123EC54B0008612F6 /* signInTests.swift */; };
 		86EBA94223E6464A00BD86C7 /* FriendsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EBA94123E6464A00BD86C7 /* FriendsDetailViewController.swift */; };
 		86EBA94423E6AEA900BD86C7 /* ConverstaionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EBA94323E6AEA900BD86C7 /* ConverstaionsViewController.swift */; };
 		86EBA94723E6AEE400BD86C7 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EBA94623E6AEE400BD86C7 /* ChatViewController.swift */; };
@@ -80,8 +82,10 @@
 		8680039723DE439000414461 /* signInFirebase.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = signInFirebase.entitlements; sourceTree = "<group>"; };
 		8680039823DE439400414461 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		8680039A23DE4F8700414461 /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
+		86C1006823EB598B0098B737 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		86D28D0423E486B2006A92EF /* FireBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseManager.swift; sourceTree = "<group>"; };
 		86D28D0623E4E775006A92EF /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
+		86E431E123EC54B0008612F6 /* signInTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signInTests.swift; sourceTree = "<group>"; };
 		86EBA94123E6464A00BD86C7 /* FriendsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsDetailViewController.swift; sourceTree = "<group>"; };
 		86EBA94323E6AEA900BD86C7 /* ConverstaionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverstaionsViewController.swift; sourceTree = "<group>"; };
 		86EBA94623E6AEE400BD86C7 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 			children = (
 				8680038223DDFE1D00414461 /* signInFirebaseTests.swift */,
 				8680038423DDFE1D00414461 /* Info.plist */,
+				86E431E123EC54B0008612F6 /* signInTests.swift */,
 			);
 			path = signInFirebaseTests;
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 				86EEB62523E0AF22007032B7 /* FeedCollectionViewCell.swift */,
 				864F5BA723E349890097A6DD /* CreatePostViewController.swift */,
 				864F5BA923E349FB0097A6DD /* DetailPostViewController.swift */,
+				86C1006823EB598B0098B737 /* FeedViewModel.swift */,
 			);
 			path = FeedVCs;
 			sourceTree = "<group>";
@@ -466,6 +472,7 @@
 				86EEB61A23E096DD007032B7 /* UsersViewController.swift in Sources */,
 				86EEB62223E0A1C5007032B7 /* TabBarViewController.swift in Sources */,
 				8602E51A23E9FD3700560D39 /* SignViewModel.swift in Sources */,
+				86C1006923EB598B0098B737 /* FeedViewModel.swift in Sources */,
 				86D28D0523E486B2006A92EF /* FireBaseManager.swift in Sources */,
 				8680039023DE154000414461 /* Models.swift in Sources */,
 				86EBA94223E6464A00BD86C7 /* FriendsDetailViewController.swift in Sources */,
@@ -486,6 +493,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8680038323DDFE1D00414461 /* signInFirebaseTests.swift in Sources */,
+				86E431E223EC54B0008612F6 /* signInTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

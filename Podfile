@@ -22,9 +22,17 @@ target 'signInFirebase' do
 	pod 'GoogleSignIn'
 
 #additional features
+	pod "ViewAnimator"
+	pod 'IHProgressHUD'
+	pod 'NotificationBannerSwift', '2.5.0'
+
 	pod 'SwipeableTabBarController'
   	pod 'SVProgressHUD','2.2.5'
 
 	pod 'iOSDropDown'
+
+#testing
+	pod 'Quick'
+      	pod 'Nimble'
 
 end

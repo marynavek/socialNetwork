@@ -51,6 +51,11 @@ class signInFirebaseTests: XCTestCase {
         XCTAssertNotEqual(test3, true)
     }
     
+    func testEmailValidation(){
+        let test = signModel.validateSignUp(email: "test", password: "password", name: "Nency", sport: "soccer", gender: "male", lastName: "Judy", confirmPassword: "password")
+        XCTAssertEqual(test, false)
+    }
+    
 
     func testPerformanceExample() {
         // This is an example of a performance test case.

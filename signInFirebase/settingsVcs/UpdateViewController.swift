@@ -11,6 +11,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseStorage
 import iOSDropDown
+import IHProgressHUD
 
 
 class UpdateViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -56,36 +57,42 @@ class UpdateViewController: UIViewController, UIImagePickerControllerDelegate, U
         buttonStyle(button: updateBtn, color: .blue)
         buttonStyle(button: deleteBtn, color: .blue)
         getUserInfo()
-        
-        
+
     }
   
 
     
     @IBAction func updateUser(_ sender: Any) {
+        IHProgressHUD.show()
         let newUserData = UserModel(userId: currentUser?.userId, email: currentUser?.email, password: currentUser?.password, userImage: imgView.image, name: nameTxt.text, lastName: lastNameTxt.text, sport: sportTxt.text, gender: genderDD.text)
         FireBaseManager.shared.updateUser(user: newUserData) { (error) in
             if error == nil {
+                IHProgressHUD.showSuccesswithStatus("Succesfully updated the user")
                 print("Succesfully updated user")
+                IHProgressHUD.dismissWithDelay(2)
             } else {
+                IHProgressHUD.showError(withStatus: "Could not update user")
+                IHProgressHUD.dismissWithDelay(2)
                 print(error?.localizedDescription ?? "Could not update user")
             }
         }
     }
     
     func getUserInfo(){
+        IHProgressHUD.show()
         FireBaseManager.shared.getUserData { (user) in
             if user != nil {
+                IHProgressHUD.dismiss()
                 self.currentUser = user 
                 self.nameTxt.text = user?.name
                 self.lastNameTxt.text = user?.lastName
                 self.sportTxt.text = user?.sport
                 self.genderDD.text = user?.gender
                 self.gender = user?.gender
-                
                 self.getImage()
-                
             } else {
+                IHProgressHUD.dismiss()
+                IHProgressHUD.showError(withStatus: "Could not get user info")
                 print("Error hapened")
             }
         }

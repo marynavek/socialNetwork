@@ -11,6 +11,7 @@ import FirebaseAuth
 import GoogleSignIn
 import TWMessageBarManager
 import SVProgressHUD
+import IHProgressHUD
 
 
 
@@ -77,24 +78,28 @@ class ViewController: UIViewController, GIDSignInDelegate {
     //Sign in button that implements sign In function and go to the main application
     @IBAction func signInBtn(_ sender: Any) {
        if signInVM.validateSignIn(email: txtEmail.text, password: txtPassword.text){
-//        SVProgressHUD.show()
+        IHProgressHUD.show()
             signInVM.signIn(email: txtEmail.text, password: txtPassword.text) { (error) in
                 if error == nil {
-//                    SVProgressHUD.dismiss()
+                    IHProgressHUD.dismiss()
                     let ctrl = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
                     ctrl.modalPresentationStyle = .fullScreen
                     self.present(ctrl, animated: true, completion: nil)
-//                    TWMessageBarManager().showMessage(withTitle: NSLocalizedString("Success", comment: ""), description: NSLocalizedString("Welcome Back!", comment: ""), type: .success, duration: 5)
-//                } else {
-//                    SVProgressHUD.dismiss()
-//                    TWMessageBarManager().showMessage(withTitle: NSLocalizedString("Error", comment: ""), description: NSLocalizedString("Could not sign in!", comment: ""), type: .error, duration: 5)
-//                }
+                    
+                } else {
+                    IHProgressHUD.dismiss()
+                }
             }
-//       } else {
-//        TWMessageBarManager().showMessage(withTitle: NSLocalizedString("Error", comment: ""), description: NSLocalizedString("All fields are required", comment: ""), type: .error, duration: 5)
-//        }
-            }
+       } else {
         }
+    }
+    
+    
+    
+    @IBAction func goTosignUp(_ sender: Any) {
+        let ctrl = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signUpViewController") as! signUpViewController
+        ctrl.modalPresentationStyle = .fullScreen
+        self.present(ctrl, animated: true, completion: nil)
     }
 }
 

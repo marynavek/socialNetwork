@@ -14,19 +14,21 @@ class SignViewModel : NSObject, GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         
     }
-    
-    
-    
-    
-    
+
     func validateSignUp(email: String?, password: String?, name: String?, sport: String?, gender: String?, lastName: String?, confirmPassword: String?) -> Bool{
         if let email = email, !email.isEmpty, let password = password, !password.isEmpty, let name = name, !name.isEmpty, let sport = sport, !sport.isEmpty, let gender = gender, !gender.isEmpty, let lastName = lastName, !lastName.isEmpty, let confPass = confirmPassword, !confPass.isEmpty {
-            if password == confPass {
-                return true
+            if email.isValidEmail {
+                if password == confPass {
+                    return true
+                } else {
+                    print("passwords do not match")
+                    return false
+                }
             } else {
-                print("passwords do not match")
+                print("The email is not valid")
                 return false
             }
+                
         } else {
             print("Fill out all fields")
             return false

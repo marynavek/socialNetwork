@@ -302,17 +302,26 @@ PODS:
   - GTMSessionFetcher/Core (1.3.1)
   - GTMSessionFetcher/Full (1.3.1):
     - GTMSessionFetcher/Core (= 1.3.1)
+  - IHProgressHUD (0.1.4)
   - iOSDropDown (0.3.4)
   - leveldb-library (1.22)
+  - MarqueeLabel (4.0.2)
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - Nimble (8.0.5)
+  - NotificationBannerSwift (2.5.0):
+    - MarqueeLabel (~> 4.0.0)
+    - SnapKit (~> 5.0.0)
   - PromisesObjC (1.2.8)
+  - Quick (2.2.0)
+  - SnapKit (5.0.1)
   - SVProgressHUD (2.2.5)
   - SwipeableTabBarController (3.0.0)
   - TWMessageBarManager (1.8.1)
+  - ViewAnimator (2.7.0)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -322,10 +331,15 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Storage
   - GoogleSignIn
+  - IHProgressHUD
   - iOSDropDown
+  - Nimble
+  - NotificationBannerSwift (= 2.5.0)
+  - Quick
   - SVProgressHUD (= 2.2.5)
   - SwipeableTabBarController
   - TWMessageBarManager
+  - ViewAnimator
 
 SPEC REPOS:
   trunk:
@@ -353,13 +367,20 @@ SPEC REPOS:
     - gRPC-Core
     - GTMAppAuth
     - GTMSessionFetcher
+    - IHProgressHUD
     - iOSDropDown
     - leveldb-library
+    - MarqueeLabel
     - nanopb
+    - Nimble
+    - NotificationBannerSwift
     - PromisesObjC
+    - Quick
+    - SnapKit
     - SVProgressHUD
     - SwipeableTabBarController
     - TWMessageBarManager
+    - ViewAnimator
 
 SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
@@ -386,14 +407,21 @@ SPEC CHECKSUMS:
   gRPC-Core: c9aef9a261a1247e881b18059b84d597293c9947
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
+  IHProgressHUD: a01846bfbb581c761c79747c67b08387c3bdfae3
   iOSDropDown: c10a761f9a00c3f1cc9d3bce43ae504628e2f692
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
+  MarqueeLabel: f762aa681ae201f66c1d511858b171f75d83013a
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  Nimble: 4ab1aeb9b45553c75b9687196b0fa0713170a332
+  NotificationBannerSwift: 684966fa934c48b70eff8bbec93fccf8db603365
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
+  Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwipeableTabBarController: 4b1cac2b7311765e1df1dc33c59a2e16897b2cd8
   TWMessageBarManager: fd84e7948ba7968a2b5d9454859135761214ec56
+  ViewAnimator: 5af1c6f3b310f012bf081259c43717aa54fbae73
 
-PODFILE CHECKSUM: c83f06f18b904d9d561be0f3b317002440d3ccd9
+PODFILE CHECKSUM: 01651bfd92b9494007d4880027d1ce0ef41554c7
 
 COCOAPODS: 1.8.4

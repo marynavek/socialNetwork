@@ -614,7 +614,6 @@
                                             <outlet property="postImg" destination="WNG-Vo-iCe" id="oeT-Ro-4Cf"/>
                                             <outlet property="postTxt" destination="80s-n8-cHq" id="VOH-Yc-wHN"/>
                                             <outlet property="userImg" destination="gm5-9S-hdX" id="5Z3-yl-gDj"/>
-                                            <outlet property="userImgToLbl" destination="2bw-N4-qCy" id="NaH-sC-JAb"/>
                                             <outlet property="userNameLbl" destination="cJQ-Gu-5PB" id="G3e-x9-jaY"/>
                                         </connections>
                                     </collectionViewCell>
@@ -1296,6 +1295,9 @@
                                 <state key="normal" title="Update Password">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
+                                <connections>
+                                    <segue destination="LIN-Rg-hmO" kind="push" id="fyX-VS-jaJ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89D-5c-cVv">
                                 <rect key="frame" x="110" y="678" width="194" height="35"/>
@@ -1340,6 +1342,110 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WTt-gM-qn8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4865.217391304348" y="101.78571428571428"/>
+        </scene>
+        <!--Change Password-->
+        <scene sceneID="ind-yo-NRs">
+            <objects>
+                <viewController storyboardIdentifier="changePassViewController" id="LIN-Rg-hmO" customClass="changePassViewController" customModule="signInFirebase" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aAQ-nE-E3I">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="apS-XH-S0p">
+                                <rect key="frame" x="63" y="265" width="288" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Old Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l2M-T1-r6A">
+                                <rect key="frame" x="63" y="334" width="288" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter New Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YLr-Nu-wdm">
+                                <rect key="frame" x="63" y="475" width="288" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm New Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cab-hc-egR">
+                                <rect key="frame" x="63" y="539" width="288" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Enter New Password Below" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="B6E-c8-k0R">
+                                <rect key="frame" x="63" y="403" width="288" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="wuK-hc-Rux"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IdX-4w-VRB">
+                                <rect key="frame" x="130" y="608" width="154" height="33"/>
+                                <color key="backgroundColor" red="0.16889968514442444" green="0.74974489212036133" blue="0.99694746732711792" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Change Password">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="changePassword:" destination="LIN-Rg-hmO" eventType="touchUpInside" id="3IM-cC-QCA"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="userSettings" translatesAutoresizingMaskIntoConstraints="NO" id="uQy-ek-D3S">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Provide your current email and password to confirm the identity" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FY4-v9-zoW">
+                                <rect key="frame" x="60" y="134" width="294" height="96"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="96" id="GXO-fH-3sg"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="B6E-c8-k0R" firstAttribute="leading" secondItem="w6N-xA-Ek1" secondAttribute="leading" constant="63" id="1jc-Td-Uwh"/>
+                            <constraint firstItem="YLr-Nu-wdm" firstAttribute="leading" secondItem="w6N-xA-Ek1" secondAttribute="leading" constant="63" id="6vA-Hl-kAy"/>
+                            <constraint firstItem="IdX-4w-VRB" firstAttribute="leading" secondItem="w6N-xA-Ek1" secondAttribute="leading" constant="130" id="8bL-7B-mMw"/>
+                            <constraint firstItem="w6N-xA-Ek1" firstAttribute="trailing" secondItem="FY4-v9-zoW" secondAttribute="trailing" constant="60" id="9uw-Db-zhU"/>
+                            <constraint firstItem="w6N-xA-Ek1" firstAttribute="trailing" secondItem="l2M-T1-r6A" secondAttribute="trailing" constant="63" id="CxF-hO-aUs"/>
+                            <constraint firstItem="B6E-c8-k0R" firstAttribute="top" secondItem="l2M-T1-r6A" secondAttribute="bottom" constant="35" id="EQg-Hz-P2O"/>
+                            <constraint firstItem="FY4-v9-zoW" firstAttribute="top" secondItem="w6N-xA-Ek1" secondAttribute="top" constant="46" id="HRp-h6-99Q"/>
+                            <constraint firstItem="apS-XH-S0p" firstAttribute="leading" secondItem="w6N-xA-Ek1" secondAttribute="leading" constant="63" id="QrB-LQ-beg"/>
+                            <constraint firstItem="w6N-xA-Ek1" firstAttribute="trailing" secondItem="IdX-4w-VRB" secondAttribute="trailing" constant="130" id="T74-El-gyF"/>
+                            <constraint firstItem="IdX-4w-VRB" firstAttribute="top" secondItem="Cab-hc-egR" secondAttribute="bottom" constant="35" id="TBg-g7-TmP"/>
+                            <constraint firstItem="l2M-T1-r6A" firstAttribute="leading" secondItem="w6N-xA-Ek1" secondAttribute="leading" constant="63" id="TzA-oJ-vBg"/>
+                            <constraint firstItem="w6N-xA-Ek1" firstAttribute="trailing" secondItem="B6E-c8-k0R" secondAttribute="trailing" constant="63" id="YBy-PN-R6b"/>
+                            <constraint firstItem="apS-XH-S0p" firstAttribute="top" secondItem="FY4-v9-zoW" secondAttribute="bottom" constant="35" id="ZnN-y6-v1S"/>
+                            <constraint firstItem="l2M-T1-r6A" firstAttribute="top" secondItem="apS-XH-S0p" secondAttribute="bottom" constant="35" id="gRJ-lj-Xum"/>
+                            <constraint firstItem="YLr-Nu-wdm" firstAttribute="top" secondItem="B6E-c8-k0R" secondAttribute="bottom" constant="30" id="h7E-W2-C2u"/>
+                            <constraint firstItem="w6N-xA-Ek1" firstAttribute="trailing" secondItem="apS-XH-S0p" secondAttribute="trailing" constant="63" id="iMw-vT-Jl0"/>
+                            <constraint firstItem="FY4-v9-zoW" firstAttribute="leading" secondItem="w6N-xA-Ek1" secondAttribute="leading" constant="60" id="lEL-1M-MDa"/>
+                            <constraint firstItem="w6N-xA-Ek1" firstAttribute="trailing" secondItem="YLr-Nu-wdm" secondAttribute="trailing" constant="63" id="m77-Cb-jlk"/>
+                            <constraint firstItem="Cab-hc-egR" firstAttribute="top" secondItem="YLr-Nu-wdm" secondAttribute="bottom" constant="30" id="oCm-Mv-vkY"/>
+                            <constraint firstItem="Cab-hc-egR" firstAttribute="leading" secondItem="w6N-xA-Ek1" secondAttribute="leading" constant="63" id="qhA-ea-YtA"/>
+                            <constraint firstItem="w6N-xA-Ek1" firstAttribute="trailing" secondItem="Cab-hc-egR" secondAttribute="trailing" constant="63" id="u8k-kC-ECb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="w6N-xA-Ek1"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Change Password" id="awt-Ph-u9L"/>
+                    <connections>
+                        <outlet property="backgroundImg" destination="uQy-ek-D3S" id="i0Q-IO-GfH"/>
+                        <outlet property="changePassBtn" destination="IdX-4w-VRB" id="Hmb-WF-iW0"/>
+                        <outlet property="confirmPassTxt" destination="Cab-hc-egR" id="vIm-lj-Ncd"/>
+                        <outlet property="emailTxt" destination="apS-XH-S0p" id="vmw-lh-7wd"/>
+                        <outlet property="instructionTxt" destination="FY4-v9-zoW" id="GX5-dQ-B0E"/>
+                        <outlet property="newPassTxt" destination="YLr-Nu-wdm" id="nUR-cg-ZAg"/>
+                        <outlet property="oldPassTxt" destination="l2M-T1-r6A" id="Ud1-sl-DHd"/>
+                        <outlet property="passwordTxt" destination="B6E-c8-k0R" id="gna-EX-PbX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vVH-wX-dR9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6621.739130434783" y="101.78571428571428"/>
         </scene>
         <!--Update Profile Info-->
         <scene sceneID="EAY-i1-cod">
@@ -1884,6 +1990,88 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OQC-2n-CJW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6728.985507246377" y="2896.875"/>
+        </scene>
+        <!--Reset Pass View Controller-->
+        <scene sceneID="Zgy-mO-HjQ">
+            <objects>
+                <viewController storyboardIdentifier="resetPassViewController" id="2js-jY-bDG" customClass="resetPassViewController" customModule="signInFirebase" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MAI-UO-mFn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="signIn" translatesAutoresizingMaskIntoConstraints="NO" id="ibU-18-w2P">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LhZ-Y7-Dma">
+                                <rect key="frame" x="20" y="54" width="185" height="27"/>
+                                <color key="backgroundColor" red="0.1688996851" green="0.74974489209999995" blue="0.99694746729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="185" id="U2Q-ct-jfh"/>
+                                    <constraint firstAttribute="height" constant="27" id="qIE-x7-UKP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Back to Sign In    " image="back">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="goBackToSignIn:" destination="2js-jY-bDG" eventType="touchUpInside" id="9Nm-EZ-blE"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cqU-j2-ADT">
+                                <rect key="frame" x="40" y="348" width="334" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Provide your email below, and we will send you the link to reset your password" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHc-H1-pEz">
+                                <rect key="frame" x="35" y="216" width="344" height="102"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="102" id="j7S-QO-PLa"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="19"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t1a-bW-gdR">
+                                <rect key="frame" x="135" y="417" width="144" height="34"/>
+                                <color key="backgroundColor" red="0.16889968514442444" green="0.74974489212036133" blue="0.99694746732711792" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Send Login Link">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetPass:" destination="2js-jY-bDG" eventType="touchUpInside" id="F7v-QN-ao2"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="cqU-j2-ADT" firstAttribute="leading" secondItem="iZy-rB-LVi" secondAttribute="leading" constant="40" id="2C9-kX-H1E"/>
+                            <constraint firstItem="LhZ-Y7-Dma" firstAttribute="leading" secondItem="iZy-rB-LVi" secondAttribute="leading" constant="20" id="aem-Ve-0E6"/>
+                            <constraint firstItem="LhZ-Y7-Dma" firstAttribute="top" secondItem="iZy-rB-LVi" secondAttribute="top" constant="10" id="bON-em-vJW"/>
+                            <constraint firstItem="t1a-bW-gdR" firstAttribute="leading" secondItem="iZy-rB-LVi" secondAttribute="leading" constant="135" id="bs9-m3-hza"/>
+                            <constraint firstItem="iZy-rB-LVi" firstAttribute="trailing" secondItem="cqU-j2-ADT" secondAttribute="trailing" constant="40" id="hkY-hM-KTS"/>
+                            <constraint firstItem="iZy-rB-LVi" firstAttribute="trailing" secondItem="UHc-H1-pEz" secondAttribute="trailing" constant="35" id="jQg-n8-Wqa"/>
+                            <constraint firstItem="cqU-j2-ADT" firstAttribute="top" secondItem="UHc-H1-pEz" secondAttribute="bottom" constant="30" id="jnv-48-h1M"/>
+                            <constraint firstItem="UHc-H1-pEz" firstAttribute="leading" secondItem="iZy-rB-LVi" secondAttribute="leading" constant="35" id="lxm-Ba-aPn"/>
+                            <constraint firstItem="iZy-rB-LVi" firstAttribute="trailing" secondItem="t1a-bW-gdR" secondAttribute="trailing" constant="135" id="ogX-C6-Zn4"/>
+                            <constraint firstItem="t1a-bW-gdR" firstAttribute="top" secondItem="cqU-j2-ADT" secondAttribute="bottom" constant="35" id="p2O-TM-V9N"/>
+                            <constraint firstItem="UHc-H1-pEz" firstAttribute="top" secondItem="LhZ-Y7-Dma" secondAttribute="bottom" constant="135" id="soQ-ov-0km"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="iZy-rB-LVi"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9Vf-Iw-sXR"/>
+                    <connections>
+                        <outlet property="backBtn" destination="LhZ-Y7-Dma" id="hWL-gM-1Cv"/>
+                        <outlet property="backgroungImg" destination="ibU-18-w2P" id="5YD-vh-8OJ"/>
+                        <outlet property="emailTxt" destination="cqU-j2-ADT" id="i0X-of-ceW"/>
+                        <outlet property="resetBtn" destination="t1a-bW-gdR" id="tqO-D6-1xb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bd6-VZ-1wS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1618.840579710145" y="776.78571428571422"/>
         </scene>
     </scenes>
     <resources>

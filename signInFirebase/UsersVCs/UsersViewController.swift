@@ -44,7 +44,7 @@ class UsersViewController: UIViewController, UICollectionViewDelegate, UICollect
         FireBaseManager.shared.getAllUsers { [weak self] (arrOfUsers) in
             guard let users = try? arrOfUsers else {
                 IHProgressHUD.showError(withStatus: "Could not get users")
-                IHProgressHUD.dismissWithDelay(2)
+                IHProgressHUD.dismissWithDelay(1)
                 print("Could not get users")
                 return
             }
@@ -52,7 +52,7 @@ class UsersViewController: UIViewController, UICollectionViewDelegate, UICollect
             print(self!.arrUsers.count)
             if self?.arrUsers.count == 0 {
                 IHProgressHUD.showInfowithStatus("There is no users yet")
-                IHProgressHUD.dismissWithDelay(2)
+                IHProgressHUD.dismissWithDelay(1)
                 print("No users were found")
             } else {
                 IHProgressHUD.dismiss()

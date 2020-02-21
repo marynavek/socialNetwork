@@ -98,7 +98,7 @@ class DetailPostViewController: UIViewController, UITextViewDelegate, UIImagePic
                 
                 FireBaseManager.shared.savePostImg(date: self.dateId, image: self.postImgView.image!) { (error) in
                 if error == nil {
-                    IHProgressHUD.dismissWithDelay(2)
+                    IHProgressHUD.dismissWithDelay(1)
                     print("Succesfully uploaded and updated image")
                 } else {
                     print(error?.localizedDescription ?? "Couldnt save image")
@@ -107,7 +107,7 @@ class DetailPostViewController: UIViewController, UITextViewDelegate, UIImagePic
                 print("Succesfuly updated post")
             } else {
                 IHProgressHUD.showError(withStatus: "Could not update the post")
-                IHProgressHUD.dismissWithDelay(2)
+                IHProgressHUD.dismissWithDelay(1)
                 print("Could not update the post")
             }
         }
@@ -120,11 +120,11 @@ class DetailPostViewController: UIViewController, UITextViewDelegate, UIImagePic
         FireBaseManager.shared.deletePost(postId: postId!) { (error) in
             if error == nil{
                 IHProgressHUD.showSuccesswithStatus("Succesfully deleted the post")
-                IHProgressHUD.dismissWithDelay(2)
+                IHProgressHUD.dismissWithDelay(1)
                 print("Succesfully deleted post")
             } else {
                 IHProgressHUD.showError(withStatus: "Could not delete the post")
-                IHProgressHUD.dismissWithDelay(2)
+                IHProgressHUD.dismissWithDelay(1)
                 print(error?.localizedDescription ?? "Could not delete post")
             }
         }

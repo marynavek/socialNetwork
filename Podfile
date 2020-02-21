@@ -21,6 +21,7 @@ target 'signInFirebase' do
 	pod 'Firebase/Storage'
 	pod 'GoogleSignIn'
 
+
 #additional features
 	pod "ViewAnimator"
 	pod 'IHProgressHUD'

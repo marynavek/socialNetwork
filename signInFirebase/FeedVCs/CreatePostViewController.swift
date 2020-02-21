@@ -65,11 +65,11 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UIImagePic
             if error == nil {
                 IHProgressHUD.showSuccesswithStatus("Succesfully created the post")
                 print("Succesfully created post")
-                IHProgressHUD.dismissWithDelay(2)
+                IHProgressHUD.dismissWithDelay(1)
                 return
             } else {
                 IHProgressHUD.showError(withStatus: "Could not create the post")
-                IHProgressHUD.dismissWithDelay(2)
+                IHProgressHUD.dismissWithDelay(1)
                 print(error?.localizedDescription ?? "Could not create a post")
             }
         }
@@ -118,7 +118,7 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UIImagePic
                 IHProgressHUD.showError(withStatus: "Could not add the image")
                 print(error?.localizedDescription ?? "Couldnt save image")
             }
-            IHProgressHUD.dismissWithDelay(2)
+            IHProgressHUD.dismissWithDelay(1)
         }
         self.imagePicker.dismiss(animated: true, completion: nil)
     }

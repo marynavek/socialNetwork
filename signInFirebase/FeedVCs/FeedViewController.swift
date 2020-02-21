@@ -42,8 +42,8 @@ class FeedViewController: UIViewController, UICollectionViewDelegate, UICollecti
         IHProgressHUD.show()
         feedVM.getPosts { (_) in
             DispatchQueue.main.async {
-                self.collView.reloadData()
                 IHProgressHUD.dismiss()
+                self.collView.reloadData()
             }
         }
     }

@@ -68,9 +68,23 @@ class SignViewModel : NSObject, GIDSignInDelegate {
         }
     }
     
-//    func isValidEmail(email: String) -> Bool {
-//        
-//    }
+    func resetPassword(email: String?, completionHandler: @escaping (Error?) -> Void){
+        if let email = email, !email.isEmpty {
+            if email.isValidEmail {
+                FireBaseManager.shared.resetPassword(email: email) { (error) in
+                    if error != nil {
+                        completionHandler(error)
+                    } else {
+                        completionHandler(nil)
+                    }
+                }
+            } else {
+                print("the email is not valid")
+            }
+        } else {
+            print("Fill out all fields")
+        }
+    }
     
     
 }

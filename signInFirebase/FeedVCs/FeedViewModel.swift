@@ -27,9 +27,7 @@ class FeedViewModel {
     
     func getPosts(completionHandler: @escaping (([[String : Any]])?) -> Void){
         arrPosts = [[String:Any]]()
-        DispatchQueue.global(qos: .utility).async {
-                   IHProgressHUD.show()
-               }
+//        IHProgressHUD.show()
         FireBaseManager.shared.getAllPosts{ (posts) in
                     if posts != nil {
                         self.arrPosts = posts!.sorted(by: { ($0["timestamp"] as! Double) > ($1["timestamp"] as! Double) })

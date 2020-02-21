@@ -49,9 +49,9 @@ func testViewStyle(txtView: UITextView, color: UIColor){
 
 func defaultImg(gender: String) -> UIImage {
     var defaultImg : UIImage = UIImage()
-    if gender == "Female" {
+    if gender == "Female" || gender == "female" {
         defaultImg = UIImage(named: "femaleI")!
-    } else if gender == "Male"{
+    } else if gender == "Male" || gender == "male" {
         defaultImg = UIImage(named: "maleI")!
     }
     return defaultImg

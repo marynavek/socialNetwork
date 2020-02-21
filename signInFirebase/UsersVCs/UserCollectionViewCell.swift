@@ -60,11 +60,11 @@ class UserCollectionViewCell: UICollectionViewCell {
         FireBaseManager.shared.addFriend(friendId: id) { (error) in
             if error != nil {
                 IHProgressHUD.showError(withStatus: "Could not add a friend")
-                IHProgressHUD.dismissWithDelay(2)
+                IHProgressHUD.dismissWithDelay(1)
                 print(error?.localizedDescription ?? "Could not add a friend")
             } else {
                 IHProgressHUD.showSuccesswithStatus("Succesfully added a friend")
-                IHProgressHUD.dismissWithDelay(2)
+                IHProgressHUD.dismissWithDelay(1)
                 print("Succesfully added a friend")
             }
             self.delegate?.addFriend()

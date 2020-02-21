@@ -69,10 +69,10 @@ class UpdateViewController: UIViewController, UIImagePickerControllerDelegate, U
             if error == nil {
                 IHProgressHUD.showSuccesswithStatus("Succesfully updated the user")
                 print("Succesfully updated user")
-                IHProgressHUD.dismissWithDelay(2)
+                IHProgressHUD.dismissWithDelay(1)
             } else {
                 IHProgressHUD.showError(withStatus: "Could not update user")
-                IHProgressHUD.dismissWithDelay(2)
+                IHProgressHUD.dismissWithDelay(1)
                 print(error?.localizedDescription ?? "Could not update user")
             }
         }

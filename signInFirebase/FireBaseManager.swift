@@ -36,6 +36,35 @@ class FireBaseManager {
         }
     }
     
+//reset password
+    func resetPassword(email: String, completionHandler: @escaping (Error?) -> Void){
+        Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+            completionHandler(error)
+        }
+    }
+
+
+//change Password
+    func changePassword(email: String, oldPass: String, password: String, completionHandler: @escaping (Error?) -> Void){
+        let user = Auth.auth().currentUser
+        var credentials : AuthCredential
+        credentials = EmailAuthProvider.credential(withEmail: email, password: oldPass)
+        user?.reauthenticateAndRetrieveData(with: credentials, completion: {(authResult, error) in
+            if error == nil {
+                Auth.auth().currentUser?.updatePassword(to: password, completion: { (error) in
+                    completionHandler(nil)
+                })
+            }else{
+                completionHandler(error)
+            }
+        })
+        
+        
+    }
+
+   
+
+    
     
 //delete user
     func deleteUser(completionHandler: @escaping (Error?) -> Void){
@@ -126,7 +155,7 @@ class FireBaseManager {
                     completionHandler(nil)
                     return
             }
-            let user = UserModel(userId: user!.uid, email: snap["email"] as? String, password: snap["password"] as? String, userImage: nil, name: snap["name"] as? String, lastName: snap["lastName"] as? String, sport: snap["sport"] as? String, gender: snap["gender"] as? String)
+            let user = UserModel(userId: user!.uid, email: snap["email"] as? String, password: snap["password"] as? String, userImage: defaultImg(gender: (snap["gender"] as? String)!), name: snap["name"] as? String, lastName: snap["lastName"] as? String, sport: snap["sport"] as? String, gender: snap["gender"] as? String)
             completionHandler(user)
         })
     }
@@ -138,10 +167,15 @@ class FireBaseManager {
                     return
                 }
             self.getUserImgById(id: userId, completionHandler: {(data, error) in
-                    if error == nil {
+                print(error?.localizedDescription)
+                    if error == nil && !(data == nil) {
                         let user = UserModel(userId: userId, email: record["email"] as? String, password: record["password"] as? String, userImage: UIImage(data: data ?? Data()), name: record["name"] as? String, lastName: record["lastName"] as? String, sport: record["sport"] as? String, gender: record["gender"] as? String)
                         completionHandler(user)
                     }
+                    else {
+                        let user = UserModel(userId: userId, email: record["email"] as? String, password: record["password"] as? String, userImage: nil, name: record["name"] as? String, lastName: record["lastName"] as? String, sport: record["sport"] as? String, gender: record["gender"] as? String)
+                        completionHandler(user)
+                }
             })
         })
     }
@@ -184,7 +218,7 @@ class FireBaseManager {
                             if error == nil && !(data == nil){
                                 userM.userImage = UIImage(data: data!) ?? UIImage()
                             }
-                            if error == nil && data == nil {
+                            else {
                                 userM.userImage = defaultImg(gender: userM.gender!)
                             }
                             userArr.append(userM)
@@ -219,7 +253,7 @@ class FireBaseManager {
                              if error == nil && !(data == nil){
                                  userM.userImage = UIImage(data: data!) ?? UIImage()
                              }
-                            if error == nil && data == nil {
+                            else {
                                 userM.userImage = defaultImg(gender: userM.gender!)
                             }
                              friendArr.append(userM)
@@ -334,9 +368,8 @@ class FireBaseManager {
                     let post = response[pid] as! [String : Any]
                     userDispatchGroup.enter()
                     self.getUserById(userId: post["userId"] as! String) { (user) in
-                        if user != nil {
+                
                             postDict["user"] = user
-                        }
                         userDispatchGroup.leave()
                     }
                     var postM = PostModel(timestamp: post["timestamp"] as? Double, userId: post["userId"] as? String, postBody: post["postBody"] as? String, date: post["date"] as? String, postImage: nil, postId: post["postId"] as? String)

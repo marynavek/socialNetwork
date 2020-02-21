@@ -43,6 +43,8 @@
 		86EEB62423E0AAC5007032B7 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EEB62323E0AAC5007032B7 /* UserCollectionViewCell.swift */; };
 		86EEB62623E0AF22007032B7 /* FeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EEB62523E0AF22007032B7 /* FeedCollectionViewCell.swift */; };
 		86EEB62823E0B38A007032B7 /* FriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EEB62723E0B38A007032B7 /* FriendCollectionViewCell.swift */; };
+		86FDF3FF23F0C10A003B3FBA /* resetPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FDF3FE23F0C109003B3FBA /* resetPassViewController.swift */; };
+		86FDF40123F0C12C003B3FBA /* changePassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FDF40023F0C12C003B3FBA /* changePassViewController.swift */; };
 		D51D56BEE5EFDE158FB93FCF /* Pods_signInFirebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 978EDA86E2B288679283C2D9 /* Pods_signInFirebase.framework */; };
 		DBC6102EA2DDEEAD91A5BB2A /* Pods_signInFirebaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2A9E838D90F2F8E29D39301 /* Pods_signInFirebaseTests.framework */; };
 /* End PBXBuildFile section */
@@ -100,6 +102,8 @@
 		86EEB62323E0AAC5007032B7 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
 		86EEB62523E0AF22007032B7 /* FeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCell.swift; sourceTree = "<group>"; };
 		86EEB62723E0B38A007032B7 /* FriendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCollectionViewCell.swift; sourceTree = "<group>"; };
+		86FDF3FE23F0C109003B3FBA /* resetPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetPassViewController.swift; sourceTree = "<group>"; };
+		86FDF40023F0C12C003B3FBA /* changePassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = changePassViewController.swift; sourceTree = "<group>"; };
 		978EDA86E2B288679283C2D9 /* Pods_signInFirebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_signInFirebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD8A251500CE40B4BFA29326 /* Pods-signInFirebaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-signInFirebaseTests.debug.xcconfig"; path = "Target Support Files/Pods-signInFirebaseTests/Pods-signInFirebaseTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D1226AD54DC6C00EA833934F /* Pods-signInFirebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-signInFirebase.debug.xcconfig"; path = "Target Support Files/Pods-signInFirebase/Pods-signInFirebase.debug.xcconfig"; sourceTree = "<group>"; };
@@ -211,6 +215,7 @@
 				8680039123DE184D00414461 /* signUpViewController.swift */,
 				8604BB2A23E29DEB00B6BFAA /* ViewController.swift */,
 				8602E51923E9FD3700560D39 /* SignViewModel.swift */,
+				86FDF3FE23F0C109003B3FBA /* resetPassViewController.swift */,
 			);
 			path = SignInVCs;
 			sourceTree = "<group>";
@@ -220,6 +225,7 @@
 			children = (
 				8680039A23DE4F8700414461 /* UpdateViewController.swift */,
 				86EEB61F23E09FDB007032B7 /* SettingsViewController.swift */,
+				86FDF40023F0C12C003B3FBA /* changePassViewController.swift */,
 			);
 			path = settingsVcs;
 			sourceTree = "<group>";
@@ -465,6 +471,7 @@
 				864F5BAA23E349FB0097A6DD /* DetailPostViewController.swift in Sources */,
 				86EBA94F23E79AE500BD86C7 /* ChatSharedCellCollectionViewCell.swift in Sources */,
 				86D28D0723E4E775006A92EF /* UserDetailViewController.swift in Sources */,
+				86FDF3FF23F0C10A003B3FBA /* resetPassViewController.swift in Sources */,
 				86EBA94B23E6AF5700BD86C7 /* ChatCollectionViewCell.swift in Sources */,
 				8602E51823E9C5AA00560D39 /* UtilitiesDefaults.swift in Sources */,
 				86EEB61C23E097B4007032B7 /* FriendsViewController.swift in Sources */,
@@ -484,6 +491,7 @@
 				8604BB2B23E29DEB00B6BFAA /* ViewController.swift in Sources */,
 				86EEB62423E0AAC5007032B7 /* UserCollectionViewCell.swift in Sources */,
 				86EBA94423E6AEA900BD86C7 /* ConverstaionsViewController.swift in Sources */,
+				86FDF40123F0C12C003B3FBA /* changePassViewController.swift in Sources */,
 				86EBA94D23E79AC100BD86C7 /* ChatSharedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

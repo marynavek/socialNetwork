@@ -47,7 +47,7 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
             self?.arrFriends = array
             if self?.arrFriends.count == 0 {
                 IHProgressHUD.showInfowithStatus("You don't have any friends yet")
-                IHProgressHUD.dismissWithDelay(2)
+                IHProgressHUD.dismissWithDelay(1)
                 print("No Friends were found")
             } else {
                 self?.colView.reloadData()

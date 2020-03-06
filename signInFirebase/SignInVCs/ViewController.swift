@@ -12,6 +12,7 @@ import GoogleSignIn
 import TWMessageBarManager
 import SVProgressHUD
 import IHProgressHUD
+import FBSDKLoginKit
 
 
 
@@ -21,6 +22,7 @@ class ViewController: UIViewController, GIDSignInDelegate {
     
     @IBOutlet weak var resetPBtn: UIButton!
     
+    @IBOutlet weak var loginFBbtn: UIButton!
     @IBOutlet weak var signUpBtn: UIButton!
     @IBOutlet weak var signInGBtn: UIButton!
     @IBOutlet weak var signInBtn: UIButton!
@@ -40,14 +42,47 @@ class ViewController: UIViewController, GIDSignInDelegate {
         buttonStyle(button: signUpBtn, color: .blue)
         buttonStyle(button: signInGBtn, color: .blue)
         buttonStyle(button: resetPBtn, color: .blue)
+        buttonStyle(button: loginFBbtn, color: .blue)
         
+        let loginButton = FBLoginButton()
+        loginButton.delegate = self as? LoginButtonDelegate
+    
         view.sendSubviewToBack(backgroundImgView)
         
         GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = self
     }
 
-    
+    //Facebook sign in
+    @IBAction func facebookSignIn(_ sender: Any) {
+        let fbLoginManager = LoginManager()
+        fbLoginManager.logIn(permissions: ["public_profile", "email"], from: self){(result, error) in
+            if let error = error {
+                print("Failed to login: \(error.localizedDescription)")
+                return
+            }
+            guard let accessToken = AccessToken.current else {
+                print("failed to get access token")
+                return
+            }
+            let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
+            IHProgressHUD.show()
+            Auth.auth().signIn(with: credential) { (authResult, error) in
+              if let error = error {
+                IHProgressHUD.showError(withStatus: "Could not login with Facebook")
+                print( error.localizedDescription)
+                IHProgressHUD.dismiss()
+                return
+              }
+            IHProgressHUD.showSuccesswithStatus("Succesfully logged in with facebook")
+            print("Succesfully logged in with Google credentials")
+                IHProgressHUD.dismiss()
+            let ctrl = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
+            ctrl.modalPresentationStyle = .fullScreen
+            self.present(ctrl, animated: true, completion: nil)
+            }
+        }
+    }
     
     //Google Sign In
     @IBAction func googleSignIn(_ sender: Any) {
@@ -65,8 +100,9 @@ class ViewController: UIViewController, GIDSignInDelegate {
                        print( error?.localizedDescription ?? "Error happened")
                    } else {
                        print("Succesfully logged in with Google credentials")
-                       let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "FeedViewController") as FeedViewController
-                       self.navigationController?.pushViewController(vc, animated: true)
+                       let ctrl = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
+                       ctrl.modalPresentationStyle = .fullScreen
+                       self.present(ctrl, animated: true, completion: nil)
                    }
                }
            }

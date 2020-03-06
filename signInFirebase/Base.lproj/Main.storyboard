@@ -84,6 +84,19 @@
                                     <action selector="googleSignIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1gO-eW-Ed5"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O04-jo-P5g">
+                                <rect key="frame" x="110" y="557" width="194" height="35"/>
+                                <color key="backgroundColor" red="0.31940361641045445" green="0.75849044889942352" blue="0.95096427202224731" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="a2Y-oP-BJj"/>
+                                </constraints>
+                                <state key="normal" title="Login with Facebook">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="facebookSignIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zXs-7c-ue2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wcn-pd-Z0d" secondAttribute="trailing" constant="110" id="2xz-lS-gPC"/>
@@ -94,6 +107,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Kk9-ad-Lex" secondAttribute="bottom" constant="40" id="Ldn-sd-jkD"/>
                             <constraint firstItem="gVq-7K-qNv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="110" id="Lfq-J0-ba7"/>
                             <constraint firstItem="msM-pR-EdY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="MQs-Em-2ST"/>
+                            <constraint firstItem="O04-jo-P5g" firstAttribute="top" secondItem="gVq-7K-qNv" secondAttribute="bottom" constant="35" id="Mat-gv-gul"/>
                             <constraint firstItem="msM-pR-EdY" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Mt4-yc-CbC"/>
                             <constraint firstAttribute="bottom" secondItem="msM-pR-EdY" secondAttribute="bottom" constant="20" symbolic="YES" id="NJ7-Uy-iEP"/>
                             <constraint firstItem="msM-pR-EdY" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Nh4-1G-O6s"/>
@@ -104,10 +118,12 @@
                             <constraint firstItem="wcn-pd-Z0d" firstAttribute="top" secondItem="28k-r6-Eih" secondAttribute="bottom" constant="35" id="X6F-gb-QdD"/>
                             <constraint firstItem="28k-r6-Eih" firstAttribute="top" secondItem="E5F-mX-WJm" secondAttribute="bottom" constant="50" id="blY-lr-qOS"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gVq-7K-qNv" secondAttribute="trailing" constant="110" id="gpx-OT-cey"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="O04-jo-P5g" secondAttribute="trailing" constant="110" id="kec-mG-Bud"/>
                             <constraint firstItem="Sg0-l8-nf9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="35" id="lnZ-R3-wJV"/>
                             <constraint firstItem="28k-r6-Eih" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="110" id="pU6-HK-s3i"/>
                             <constraint firstItem="E5F-mX-WJm" firstAttribute="top" secondItem="Sg0-l8-nf9" secondAttribute="bottom" constant="35" id="rGa-q7-aiR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Kk9-ad-Lex" secondAttribute="trailing" constant="110" id="rb4-hn-ogg"/>
+                            <constraint firstItem="O04-jo-P5g" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="110" id="sEF-ZL-ihI"/>
                             <constraint firstItem="Sg0-l8-nf9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="150" id="u6s-V5-1sM"/>
                             <constraint firstItem="Kk9-ad-Lex" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="110" id="wvj-sY-SLe"/>
                             <constraint firstItem="wcn-pd-Z0d" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="110" id="yPU-iL-G5A"/>
@@ -117,6 +133,7 @@
                     <navigationItem key="navigationItem" id="h2u-qw-MKe"/>
                     <connections>
                         <outlet property="backgroundImgView" destination="msM-pR-EdY" id="qd5-Xk-Rx8"/>
+                        <outlet property="loginFBbtn" destination="O04-jo-P5g" id="Mbi-6y-kgh"/>
                         <outlet property="resetPBtn" destination="gVq-7K-qNv" id="oSI-fs-XJG"/>
                         <outlet property="signInBtn" destination="28k-r6-Eih" id="9a4-Qc-VGo"/>
                         <outlet property="signInGBtn" destination="wcn-pd-Z0d" id="pMD-WW-sNX"/>

@@ -12,6 +12,7 @@ import Firebase
 import FirebaseDatabase
 import FirebaseStorage
 import FirebaseAuth
+import FBSDKCoreKit
 
 
 class FireBaseManager {
@@ -113,6 +114,24 @@ class FireBaseManager {
                             completionHandler(error1)
                         }
                     }
+                }
+            }
+        }
+    }
+    
+    func addUserEntryForGIDAndFBLogin(userId: String?, completionHandler: @escaping (Error?) -> Void){
+        guard let uid = userId else {
+            print("error happened")
+            return
+        }
+        GraphRequest(graphPath: "me", parameters:  ["fields": "id, name, first_name, last_name , email, gender"], tokenString: AccessToken.current?.tokenString, version: nil, httpMethod: HTTPMethod(rawValue: "GET")).start { (connection, result, error) in
+            guard let info = result as? [String: Any] else { return }
+            let userDict = ["name": info["first_name"] as Any, "email" : info["email"] as Any, "password" : "", "sport" : "", "gender" : info["gender"] as Any, "lastName": info["last_name"] as Any] as [String : Any]
+            self.referenceD.child("User").child(uid).updateChildValues(userDict){(error, ref) in
+                if error != nil{
+                    completionHandler(error)
+                } else {
+                    completionHandler(nil)
                 }
             }
         }

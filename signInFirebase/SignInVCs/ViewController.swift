@@ -74,7 +74,15 @@ class ViewController: UIViewController, GIDSignInDelegate {
                 IHProgressHUD.dismiss()
                 return
               }
-            IHProgressHUD.showSuccesswithStatus("Succesfully logged in with facebook")
+                IHProgressHUD.showSuccesswithStatus("Succesfully logged in with facebook")
+                if (authResult?.additionalUserInfo!.isNewUser)! {
+                    let uid = Auth.auth().currentUser?.uid
+                    FireBaseManager.shared.addUserEntryForGIDAndFBLogin(userId: uid) { (error) in
+                        if error != nil{
+                            print("error happened")
+                        }
+                    }
+                }
             print("Succesfully logged in with Google credentials")
                 IHProgressHUD.dismiss()
             let ctrl = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController

@@ -31,9 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let handled = ApplicationDelegate.shared.application(application, open: url, options: options)
             if handled {
                 return handled
-            } else {
-                return GIDSignIn.sharedInstance().handle(url)
             }
+        return GIDSignIn.sharedInstance().handle(url)
+            
         }
         return true
     }

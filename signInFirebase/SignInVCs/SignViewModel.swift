@@ -8,12 +8,9 @@
 
 import UIKit
 import GoogleSignIn
+import FirebaseAuth
 
-
-class SignViewModel : NSObject, GIDSignInDelegate {
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        
-    }
+class SignViewModel : NSObject {
 
     func validateSignUp(email: String?, password: String?, name: String?, sport: String?, gender: String?, lastName: String?, confirmPassword: String?) -> Bool{
         if let email = email, !email.isEmpty, let password = password, !password.isEmpty, let name = name, !name.isEmpty, let sport = sport, !sport.isEmpty, let gender = gender, !gender.isEmpty, let lastName = lastName, !lastName.isEmpty, let confPass = confirmPassword, !confPass.isEmpty {

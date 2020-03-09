@@ -74,10 +74,10 @@ class ViewController: UIViewController, GIDSignInDelegate {
                 IHProgressHUD.dismiss()
                 return
               }
-                IHProgressHUD.showSuccesswithStatus("Succesfully logged in with facebook")
+                IHProgressHUD.showSuccesswithStatus("Succesfully logged in with Facebook")
                 if (authResult?.additionalUserInfo!.isNewUser)! {
                     let uid = Auth.auth().currentUser?.uid
-                    FireBaseManager.shared.addUserEntryForGIDAndFBLogin(userId: uid) { (error) in
+                    FireBaseManager.shared.addUserEntryForGIDAndFBLogin(userId: uid, user: nil, isFB: true) { (error) in
                         if error != nil{
                             print("error happened")
                         }
@@ -103,15 +103,29 @@ class ViewController: UIViewController, GIDSignInDelegate {
            } else {
                guard let auth = user.authentication else {return}
                let credential = GoogleAuthProvider.credential(withIDToken: auth.idToken, accessToken: auth.accessToken)
+            IHProgressHUD.show()
                Auth.auth().signIn(with: credential){(result, error) in
-                   if error != nil {
-                       print( error?.localizedDescription ?? "Error happened")
-                   } else {
-                       print("Succesfully logged in with Google credentials")
-                       let ctrl = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
-                       ctrl.modalPresentationStyle = .fullScreen
-                       self.present(ctrl, animated: true, completion: nil)
+                   if let error = error {
+                       IHProgressHUD.showError(withStatus: "Could not login with Google")
+                       print( error.localizedDescription)
+                       IHProgressHUD.dismiss()
+                       return
                    }
+                    IHProgressHUD.showSuccesswithStatus("Succesfully logged in with Google")
+                if (result?.additionalUserInfo!.isNewUser)! {
+                 let uid = Auth.auth().currentUser?.uid
+                    let user = UserModel(userId: uid, email: result?.additionalUserInfo?.profile?["email"] as? String, password: nil, userImage: nil, name: result?.additionalUserInfo?.profile?["given_name"] as? String, lastName: result?.additionalUserInfo?.profile?["family_name"] as? String, sport: nil, gender: nil)
+                    FireBaseManager.shared.addUserEntryForGIDAndFBLogin(userId: uid, user: user, isFB: false) { (error) in
+                        if error != nil{
+                            print("error happened")
+                        }
+                    }
+                }
+                print("Succesfully logged in with Google credentials")
+                 IHProgressHUD.dismiss()
+                let ctrl = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
+                ctrl.modalPresentationStyle = .fullScreen
+                self.present(ctrl, animated: true, completion: nil)
                }
            }
        }

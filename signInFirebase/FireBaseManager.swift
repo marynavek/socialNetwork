@@ -119,14 +119,25 @@ class FireBaseManager {
         }
     }
     
-    func addUserEntryForGIDAndFBLogin(userId: String?, completionHandler: @escaping (Error?) -> Void){
+    func addUserEntryForGIDAndFBLogin(userId: String?,user: UserModel?, isFB: Bool, completionHandler: @escaping (Error?) -> Void){
         guard let uid = userId else {
             print("error happened")
             return
         }
-        GraphRequest(graphPath: "me", parameters:  ["fields": "id, name, first_name, last_name , email, gender"], tokenString: AccessToken.current?.tokenString, version: nil, httpMethod: HTTPMethod(rawValue: "GET")).start { (connection, result, error) in
-            guard let info = result as? [String: Any] else { return }
-            let userDict = ["name": info["first_name"] as Any, "email" : info["email"] as Any, "password" : "", "sport" : "", "gender" : info["gender"] as Any, "lastName": info["last_name"] as Any] as [String : Any]
+        if isFB {
+            GraphRequest(graphPath: "me", parameters:  ["fields": "id, name, first_name, last_name , email, gender"], tokenString: AccessToken.current?.tokenString, version: nil, httpMethod: HTTPMethod(rawValue: "GET")).start { (connection, result, error) in
+                guard let info = result as? [String: Any] else { return }
+                let userDict = ["name": info["first_name"] as Any, "email" : info["email"] as Any, "password" : "", "sport" : "", "gender" : "", "lastName": info["last_name"] as Any] as [String : Any]
+                self.referenceD.child("User").child(uid).updateChildValues(userDict){(error, ref) in
+                    if error != nil{
+                        completionHandler(error)
+                    } else {
+                        completionHandler(nil)
+                    }
+                }
+            }
+        } else {
+            let userDict = ["name": user?.name ?? "", "email" : user?.email ?? "", "password" : "", "sport" : "", "gender" : "", "lastName": user?.lastName ?? ""] as [String : Any]
             self.referenceD.child("User").child(uid).updateChildValues(userDict){(error, ref) in
                 if error != nil{
                     completionHandler(error)
@@ -174,8 +185,8 @@ class FireBaseManager {
                     completionHandler(nil)
                     return
             }
-            let user = UserModel(userId: user!.uid, email: snap["email"] as? String, password: snap["password"] as? String, userImage: defaultImg(gender: (snap["gender"] as? String)!), name: snap["name"] as? String, lastName: snap["lastName"] as? String, sport: snap["sport"] as? String, gender: snap["gender"] as? String)
-            completionHandler(user)
+            let userM = UserModel(userId: user!.uid, email: snap["email"] as? String, password: snap["password"] as? String, userImage: defaultImg(gender: (snap["gender"] as? String)!), name: snap["name"] as? String, lastName: snap["lastName"] as? String, sport: snap["sport"] as? String, gender: snap["gender"] as? String)
+            completionHandler(userM)
         })
     }
     
